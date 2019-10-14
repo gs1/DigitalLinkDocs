@@ -51,4 +51,4 @@ Rather than redirecting to the default link, a resolver will redirect requests f
 `https://id.gs1.org/gtin/9506000134352?linkType=recipeWebsite`
 
 will redirect to a recipe for that product rather than the product information page, which is the default. 
-GS1 maintains a list of link types as part of its [Web vocabulary](https://mh1.eu/voc/?show=linktypes) but you can get a quick listing of the link types in use in a particular resolver by consulting its Resolver description File.
+GS1 maintains a list of link types as part of its [Web vocabulary](https://mh1.eu/voc/?show=linktypes) but you can get a quick listing of the link types in use in a particular resolver by consulting its Resolver Description File.
