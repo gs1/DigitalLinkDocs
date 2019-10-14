@@ -1,6 +1,6 @@
 # Documentation for various GS1 Digital Link tools and libraries
 
-GS1 conformant resolvers act primarily as redirection services and, with the exception of one command, do not usually return content directly. They are defined in chapter 8 of version 1.1 of the GS1 Digital link standard (see [current draft] (https://www.gs1.org/sites/default/files/docs/gsmp/gs1_digital_link_1.1_comrev_version_786.pdf).
+GS1 conformant resolvers act primarily as redirection services and, with the exception of one command, do not usually return content directly. They are defined in chapter 8 of version 1.1 of the GS1 Digital link standard (see [current draft](https://www.gs1.org/sites/default/files/docs/gsmp/gs1_digital_link_1.1_comrev_version_786.pdf)).
 ## Overall aim
 The overall aim of a GS1 conformant resolver is that applications can resolve a GS1 identifier, such as a GTIN, SSCC or GLN, and be redirected to one or more resources relevant to the identified item.
 ## The basics
@@ -44,7 +44,7 @@ The nesting is a result of the flexibility of the system. Resolvers allow the di
 2. The language of the target resource
 3. 	The media type of the target resource
 4.	A further value called context.
-The value space for the context parameter is not defined in the standard but is defined separately for each resolver in the Resolver Description File that can be found as a JSON object at /.well-known/gs1resolver for any GS1 conformant resolver (see the [id.gs1.org resolver example](https://id.gs1.org/.well-known/gs1resolver). The values can be expressed either as an enumerated list (in an array provided as the value of `supportedContextValuesEnumerated` and/or by naming one or more external lists of values as the value of the `supportedContextValuesExternal` property).
+The value space for the context parameter is not defined in the standard but is defined separately for each resolver in the Resolver Description File that can be found as a JSON object at `/.well-known/gs1resolver` for any GS1 conformant resolver (see the [id.gs1.org resolver example](https://id.gs1.org/.well-known/gs1resolver)). The values can be expressed either as an enumerated list (in an array provided as the value of `supportedContextValuesEnumerated` and/or by naming one or more external lists of values as the value of the `supportedContextValuesExternal` property).
 ## Requesting a specific link
 Rather than redirecting to the default link, a resolver will redirect requests for a specific link type if one is available. For example:
 
