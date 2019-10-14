@@ -1,6 +1,6 @@
 # Quick Start Documentation for various GS1 Digital Link tools and libraries
 
-GS1 conformant resolvers act primarily as redirection services and, with the exception of one command, do not usually return content directly. They are defined in chapter 8 of version 1.1 of the GS1 Digital link standard (see [current draft](https://www.gs1.org/sites/default/files/docs/gsmp/gs1_digital_link_1.1_comrev_version_786.pdf)).
+GS1 conformant resolvers act primarily as redirection services and, with the exception of one command, do not usually return content directly. They are defined in chapter 8 of version 1.1 of the GS1 Digital Link standard (see [current draft](https://www.gs1.org/sites/default/files/docs/gsmp/gs1_digital_link_1.1_comrev_version_786.pdf)).
 ## Overall aim
 The overall aim of a GS1 conformant resolver is that applications can resolve a GS1 identifier, such as a GTIN, SSCC or GLN, and be redirected to one or more resources relevant to the identified item.
 ## The basics
@@ -14,11 +14,11 @@ The GTIN for the (fictitious) Dal Giardino Risotto Rice with Mushrooms is `09506
 
 `GET https://id.gs1.org/gtin/9506000134352`
 ## Constructing the GS1 Digital Link URI
-GS1 Digital Link HTTP URIs are an expression of the full GS1 system of global identifiers for trade items, shipments, locations and more. This can become complex but you can construct the HTTP URI using the [GS1 Digital link toolkit](https://github.com/gs1/GS1DigitalLinkToolkit.js) – a JavaScript library that has its own documentation. The output of any GS1 barcode can be fed to that toolkit, along with the base URI of your resolver, and the relevant URI is returned. 
+GS1 Digital Link HTTP URIs are an expression of the full GS1 system of global identifiers for trade items, shipments, locations and more. This can become complex but you can construct the HTTP URI using the [GS1 Digital link toolkit](https://github.com/gs1/GS1DigitalLinkToolkit.js) – a JavaScript library that has its own documentation and an [online demo page](https://gs1.github.io/GS1DigitalLinkToolkit.js/) . The output of any GS1 barcode can be fed to that toolkit, along with the base URI of your resolver, and the corresponding GS1 Digital Link URI is returned. 
 ## Accessing multiple links
-Redirection to the resource you most likely want is just the default behaviour. The resolver may have multiple links associated with a given identifier and these can be discovered in two ways.
+Redirection to the resource you most likely want is just the default behaviour. The resolver may have multiple links associated with a given identifier and these can be discovered in two ways:
 ### HTTP-only
-You can do an HTTP HEAD request on any GS1 Digital Link URI and suppress your client’s redirection. The resolver will include the full list of available links in its Link response header
+You can do an HTTP HEAD request on any GS1 Digital Link URI and suppress your client’s redirection. The resolver will include the full list of available links in its Link response header.
 The key elements of the HTTP trace for the Dal Giardino example are as follows:
 
 `HTTP/1.1 307 Temporary Redirect`
@@ -27,7 +27,7 @@ The key elements of the HTTP trace for the Dal Giardino example are as follows:
 
 `Link: <https://dalgiardino.com/risotto-rice-with-mushrooms/>; rel="pip"; type="text/html"; hreflang="en"; title="https://gs1.org/voc/pip", <https://dalgiardino.com/mushroom-squash-risotto/>; rel="recipewebsite"; type="text/html"; hreflang="en"; title="https://gs1.org/voc/recipeWebsite", <https://dalgiardino.com/where-to-buy/>; rel="hasretailers"; type="text/html"; hreflang="en"; title="https://gs1.org/voc/hasRetailers", <https://dalgiardino.com/about/>; rel="productsustainabilityinfo"; type="text/html"; hreflang="en"; title="https://gs1.org/voc/productSustainabilityInfo"`
 
-The 307 response and the Location header tell you the destination of the redirect that would be applied with a regular GET. The link header includes a list of options, each of which has a number of fields:
+The 307 response and the Location header tell you the destination of the redirect that would be applied with a regular GET. The Link header includes a list of options (separated by commas), each of which has a number of fields (separated by semicolons):
 1.	The target URL
 2.	The link relationship type
 3.	The media type of the target resource
@@ -44,7 +44,7 @@ The nesting is a result of the flexibility of the system. Resolvers allow the di
 2. The language of the target resource
 3. 	The media type of the target resource
 4.	A further value called context.
-The value space for the context parameter is not defined in the standard but is defined separately for each resolver in the Resolver Description File that can be found as a JSON object at `/.well-known/gs1resolver` for any GS1 conformant resolver (see the [id.gs1.org resolver example](https://id.gs1.org/.well-known/gs1resolver)). The values can be expressed either as an enumerated list (in an array provided as the value of `supportedContextValuesEnumerated` and/or by naming one or more external lists of values as the value of the `supportedContextValuesExternal` property).
+The value space (e.g. permitted / defined values) for the context parameter is not defined in the GS1 Digital Link standard but is defined separately for each resolver in the Resolver Description File that can be found as a JSON object at `/.well-known/gs1resolver` for any GS1 conformant resolver (see the [id.gs1.org resolver example](https://id.gs1.org/.well-known/gs1resolver)). The values can be expressed either as an enumerated list (in an array provided as the value of `supportedContextValuesEnumerated` and/or by naming one or more external lists of values as the value of the `supportedContextValuesExternal` property).
 ## Requesting a specific link
 Rather than redirecting to the default link, a resolver will redirect requests for a specific link type if one is available. For example:
 
