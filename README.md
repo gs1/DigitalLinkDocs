@@ -33,6 +33,16 @@ The 307 response and the Location header tell you the destination of the redirec
 3.	The media type of the target resource
 4.	The language of the target resource
 5.	A human-readable title for the link
+
+For the example response above, the information contained in the Link: response is as follows:
+
+| Target URL | Link relationship type | Media type | Language | Title |
+| ---------- | ---------------------- | ---------- | -------- | ----- |
+| https://dalgiardino.com/risotto-rice-with-mushrooms | pip | text/html | en | https://gs1.org/voc/pip |
+| https://dalgiardino.com/mushroom-squash-risotto/ | recipewebsite | text/html | en | https://gs1.org/voc/recipeWebsite |
+| https://dalgiardino.com/where-to-buy | hasretailers | text/html | en | https://gs1.org/voc/hasRetailers |
+| https://dalgiardino.com/about/ | productsustainabilityinfo | text/html | en | https://gs1.org/voc/productSustainabilityInfo |
+
 ### linkType=all
 The same list of available links can be obtained as either a JSON object or an HTML page if you use the value ‘all’ for the linkType parameter. For example:
 
