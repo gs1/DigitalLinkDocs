@@ -20,8 +20,8 @@ Redirection to the resource you most likely want is just the default behaviour. 
 ### HTTP-only
 You can do an HTTP HEAD request on any GS1 Digital Link URI and suppress your client’s redirection. The resolver will include the full list of available links in its Link response header
 The key elements of the HTTP trace for the Dal Giardino example are as follows:
-
-`HTTP/1.1 307 Temporary Redirect
+`
+HTTP/1.1 307 Temporary Redirect
 
 Location: https://dalgiardino.com/risotto-rice-with-mushrooms/
 
