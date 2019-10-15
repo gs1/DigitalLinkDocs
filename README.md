@@ -27,7 +27,7 @@ The key elements of the HTTP trace for the Dal Giardino example are as follows:
 
 `Link: <https://dalgiardino.com/risotto-rice-with-mushrooms/>; rel="pip"; type="text/html"; hreflang="en"; title="https://gs1.org/voc/pip", <https://dalgiardino.com/mushroom-squash-risotto/>; rel="recipewebsite"; type="text/html"; hreflang="en"; title="https://gs1.org/voc/recipeWebsite", <https://dalgiardino.com/where-to-buy/>; rel="hasretailers"; type="text/html"; hreflang="en"; title="https://gs1.org/voc/hasRetailers", <https://dalgiardino.com/about/>; rel="productsustainabilityinfo"; type="text/html"; hreflang="en"; title="https://gs1.org/voc/productSustainabilityInfo"`
 
-(2019-10-14 NB, the titles in the above example are incorrect. See [Issue 2](https://github.com/gs1/GS1_DigitalLink_Resolver_CE/issues/2))
+(2019-10-14 NB, some important details in the above example are incorrect. See [Issue 2](https://github.com/gs1/GS1_DigitalLink_Resolver_CE/issues/2) and [Issue 4](https://github.com/gs1/GS1_DigitalLink_Resolver_CE/issues/4))
 
 The 307 response and the Location header tell you the destination of the redirect that would be applied with a regular GET. The Link header includes a list of options (separated by commas), each of which has a number of fields (separated by semicolons):
 1.	The target URL
