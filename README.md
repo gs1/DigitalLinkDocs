@@ -41,7 +41,7 @@ For the example response above, the information contained in the Link: response 
 | Target URL | Link relationship type | Media type | Language | Title |
 | ---------- | ---------------------- | ---------- | -------- | ----- |
 | https://dalgiardino.com/risotto-rice-with-mushrooms | pip | text/html | en | Product information page |
-| https://dalgiardino.com/mushroom-squash-risotto/ | recipewebsite | text/html | en | Recipe website |
+| https://dalgiardino.com/mushroom-squash-risotto/ | recipeinfo | text/html | en | Recipe website |
 | https://dalgiardino.com/where-to-buy | hasretailers | text/html | en | Has retailers |
 | https://dalgiardino.com/about/ | productsustainabilityinfo | text/html | en | Product sustainability information |
 
@@ -60,7 +60,7 @@ The value space (e.g. permitted / defined values) for the context parameter is n
 ## Requesting a specific link
 Rather than redirecting to the default link, a resolver will redirect requests for a specific link type if one is available. For example:
 
-`https://id.gs1.org/gtin/9506000134352?linkType=recipeWebsite`
+`https://id.gs1.org/gtin/9506000134352?linkType=recipeInfo`
 
 will redirect to a recipe for that product rather than the product information page, which is the default. 
 GS1 maintains a list of link types as part of its [Web vocabulary](https://mh1.eu/voc/?show=linktypes) but you can get a quick listing of the link types in use in a particular resolver by consulting its [Resolver Description File](https://id.gs1.org/.well-known/gs1resolver). You can get a list of all the GS1 link types as a JSON object from https://mh1.eu/voc/linktypes.php (link to be updated soon)
