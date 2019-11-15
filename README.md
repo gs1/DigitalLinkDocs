@@ -25,9 +25,9 @@ The key elements of the HTTP trace for the Dal Giardino example are as follows:
 
 `Location: https://dalgiardino.com/risotto-rice-with-mushrooms/`
 
-`Link: <https://dalgiardino.com/risotto-rice-with-mushrooms/>; rel="pip"; type="text/html"; hreflang="en"; title="https://gs1.org/voc/pip", <https://dalgiardino.com/mushroom-squash-risotto/>; rel="recipewebsite"; type="text/html"; hreflang="en"; title="https://gs1.org/voc/recipeWebsite", <https://dalgiardino.com/where-to-buy/>; rel="hasretailers"; type="text/html"; hreflang="en"; title="https://gs1.org/voc/hasRetailers", <https://dalgiardino.com/about/>; rel="productsustainabilityinfo"; type="text/html"; hreflang="en"; title="https://gs1.org/voc/productSustainabilityInfo"`
+`Link: <https://dalgiardino.com/risotto-rice-with-mushrooms/>; rel="pip"; type="text/html"; hreflang="en"; title="Product information page", <https://dalgiardino.com/mushroom-squash-risotto/>; rel="recipeinfo"; type="text/html"; hreflang="en"; title="Recipe website", <https://dalgiardino.com/where-to-buy/>; rel="hasretailers"; type="text/html"; hreflang="en"; title="Retailers", <https://dalgiardino.com/about/>; rel="productsustainabilityinfo"; type="text/html"; hreflang="en"; title="sustainability and recycling"`
 
-(2019-10-14 NB, some important details in the above example are incorrect. See [Issue 2](https://github.com/gs1/GS1_DigitalLink_Resolver_CE/issues/2) and [Issue 4](https://github.com/gs1/GS1_DigitalLink_Resolver_CE/issues/4))
+(2019-11-15 Note [Issue 4](https://github.com/gs1/GS1_DigitalLink_Resolver_CE/issues/4))
 
 The 307 response and the Location header tell you the destination of the redirect that would be applied with a regular GET. The Link header includes a list of options (separated by commas), each of which has a number of fields (separated by semicolons):
 1.	The target URL
@@ -63,4 +63,4 @@ Rather than redirecting to the default link, a resolver will redirect requests f
 `https://id.gs1.org/gtin/9506000134352?linkType=recipeWebsite`
 
 will redirect to a recipe for that product rather than the product information page, which is the default. 
-GS1 maintains a list of link types as part of its [Web vocabulary](https://mh1.eu/voc/?show=linktypes) but you can get a quick listing of the link types in use in a particular resolver by consulting its Resolver Description File.
+GS1 maintains a list of link types as part of its [Web vocabulary](https://mh1.eu/voc/?show=linktypes) but you can get a quick listing of the link types in use in a particular resolver by consulting its [Resolver Description File](https://id.gs1.org/.well-known/gs1resolver). You can get a list of all the GS1 link types as a JSON object from https://mh1.eu/voc/linktypes.php (link to be updated soon)
