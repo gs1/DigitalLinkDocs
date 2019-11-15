@@ -41,9 +41,9 @@ For the example response above, the information contained in the Link: response 
 | Target URL | Link relationship type | Media type | Language | Title |
 | ---------- | ---------------------- | ---------- | -------- | ----- |
 | https://dalgiardino.com/risotto-rice-with-mushrooms | pip | text/html | en | Product information page |
-| https://dalgiardino.com/mushroom-squash-risotto/ | recipeinfo | text/html | en | Recipe website |
-| https://dalgiardino.com/where-to-buy | hasretailers | text/html | en | Has retailers |
-| https://dalgiardino.com/about/ | productsustainabilityinfo | text/html | en | Product sustainability information |
+| https://dalgiardino.com/mushroom-squash-risotto/ | recipeInfo | text/html | en | Recipe website |
+| https://dalgiardino.com/where-to-buy | hasRetailers | text/html | en | Has retailers |
+| https://dalgiardino.com/about/ | productSustainabilityInfo | text/html | en | Product sustainability information |
 
 ### linkType=all
 The same list of available links can be obtained as either a JSON object or an HTML page if you use the value ‘all’ for the linkType parameter. For example:
