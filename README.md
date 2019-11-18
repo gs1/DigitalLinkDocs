@@ -64,3 +64,6 @@ Rather than redirecting to the default link, a resolver will redirect requests f
 
 will redirect to a recipe for that product rather than the product information page, which is the default. 
 GS1 maintains a list of link types as part of its [Web vocabulary](https://mh1.eu/voc/?show=linktypes) but you can get a quick listing of the link types in use in a particular resolver by consulting its [Resolver Description File](https://id.gs1.org/.well-known/gs1resolver). You can get a list of all the GS1 link types as a JSON object from https://mh1.eu/voc/linktypes.php (link to be updated soon)
+
+## Downloading all available links in bulk
+It's possible to grab all available links as a bulk download. See the [separate page](https://gs1.github.io/DigitalLinkDocs/bulkdownload.html) for more information. Please note that this experimental feature is not part of GS1 Digital Link version 1.1 (draft) and is not yet filly implemented (it needs to include pagination, for example) but it will be considered for inclusion in version 1.2. It is implemented in the [community edition resolver](https://github.com/gs1/GS1_DigitalLink_Resolver_CE). 
