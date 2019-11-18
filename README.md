@@ -1,3 +1,13 @@
+- [Quick Start Documentation for various GS1 Digital Link tools and libraries](#quick-start-documentation-for-various-gs1-digital-link-tools-and-libraries)
+  - [Overall aim](#overall-aim)
+  - [The basics](#the-basics)
+  - [Constructing the GS1 Digital Link URI](#constructing-the-gs1-digital-link-uri)
+  - [Accessing multiple links](#accessing-multiple-links)
+    - [HTTP-only](#http-only)
+    - [linkType=all](#linktypeall)
+  - [Requesting a specific link](#requesting-a-specific-link)
+  - [Downloading all available links in bulk](#downloading-all-available-links-in-bulk)
+
 # Quick Start Documentation for various GS1 Digital Link tools and libraries
 
 GS1 conformant resolvers act primarily as redirection services and, with the exception of one command, do not usually return content directly. They are defined in chapter 8 of version 1.1 of the GS1 Digital Link standard (see [current draft](https://www.gs1.org/sites/default/files/docs/gsmp/gs1_digital_link_1.1_comrev_version_786.pdf)).
