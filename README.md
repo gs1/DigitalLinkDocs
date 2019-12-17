@@ -77,5 +77,6 @@ GS1 maintains a list of link types as part of its [Web vocabulary](https://mh1.e
 
 ## Downloading all available links in bulk
 It's possible to grab all available links as a bulk download. See the [separate page](https://gs1.github.io/DigitalLinkDocs/bulkdownload.html) for more information. Please note that this experimental feature is not part of GS1 Digital Link version 1.1 (draft) and is not yet filly implemented (it needs to include pagination, for example) but it will be considered for inclusion in version 1.2. It is implemented in the [community edition resolver](https://github.com/gs1/GS1_DigitalLink_Resolver_CE). 
-## Where's the community?
+
+# Where's the community?
 Please report any bugs with any of the software by raising an issue in the relevant repository. If you want to ask questions and generally be part of the broader developer community around GS1 Digital Link, please join our [Google group](https://groups.google.com/forum/#!forum/gs1-digital-link-developers)
