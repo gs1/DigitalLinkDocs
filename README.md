@@ -80,3 +80,6 @@ It's possible to grab all available links as a bulk download. See the [separate 
 
 # Where's the community?
 Please report any bugs with any of the software by raising an issue in the relevant repository. If you want to ask questions and generally be part of the broader developer community around GS1 Digital Link, please join our [Google group](https://groups.google.com/forum/#!forum/gs1-digital-link-developers)
+
+# Running a pilot
+The resolver at `id.gs1.org` is available for pilots and tests. GS1 Member Organisations and GCP licensees may request an account on the resolver. Contact [mailto:phil.archer@gs1.org](Phil Archer) for details. 
