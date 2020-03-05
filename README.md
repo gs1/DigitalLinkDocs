@@ -59,13 +59,13 @@ The same list of available links can be obtained as either a JSON object or an H
 
 `https://id.gs1.org/gtin/9506000134352?linkType=all`
 
-The JSON object returned to clients specifying that media type in the HTTP request is identical to the one included in and processed by the HTML page.
-The nesting is a result of the flexibility of the system. Resolvers allow the differentiation of links associated with a particular GS1 key according to:
+The JSON object returned to clients specifying that media type in the HTTP request is identical to the one included in and processed by the HTML page. Resolvers allow the differentiation of links associated with a particular GS1 key according to:
 1. The link relationship type (known in GS1 Digital Link as simply the ‘link type’)
 2. The language of the target resource
 3. 	The media type of the target resource
 4.	A further value called context.
 The value space (e.g. permitted / defined values) for the context parameter is not defined in the GS1 Digital Link standard but is defined separately for each resolver in the Resolver Description File that can be found as a JSON object at `/.well-known/gs1resolver` for any GS1 conformant resolver (see the [id.gs1.org resolver example](https://id.gs1.org/.well-known/gs1resolver)). The values can be expressed either as an enumerated list (in an array provided as the value of `supportedContextValuesEnumerated` and/or by naming one or more external lists of values as the value of the `supportedContextValuesExternal` property).
+*NB* The structure of the returned JSON is *not stable*. At the time of writing (2020-03-05), we're about that start work on version 1.2 of the standard and that document will define the formal structure (there will be a JSON schema etc.). Please be sure to be ready to adjust your code for handling that JSON. See the bottom of the page for how you can make sure you're kept up to date.
 ## Requesting a specific link
 Rather than redirecting to the default link, a resolver will redirect requests for a specific link type if one is available. For example:
 
@@ -81,4 +81,4 @@ It's possible to grab all available links as a bulk download. See the [separate 
 Please report any bugs with any of the software by raising an issue in the relevant repository. If you want to ask questions and generally be part of the broader developer community around GS1 Digital Link, please join our [Google group](https://groups.google.com/forum/#!forum/gs1-digital-link-developers)
 
 # Running a pilot
-The resolver at `id.gs1.org` is available for pilots and tests. GS1 Member Organisations and GCP licensees may request an account on the resolver. Contact <a href="mailto:phil.archer@gs1.org">Phil Archer</a> for details. 
+The resolver at `id.gs1.org` is available for pilots and tests. GS1 Member Organisations and GCP licensees may request an account on the resolver. Contact <a href="mailto:phil.archer@gs1.org">Phil Archer</a> for details. Developers are strongly encouraged to join the [GS1 Digital Link developers' Google group](https://groups.google.com/forum/#!forum/gs1-digital-link-developers)
