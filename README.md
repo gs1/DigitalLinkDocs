@@ -35,9 +35,8 @@ The key elements of the HTTP trace for the Dal Giardino example are as follows:
 
 `Location: https://dalgiardino.com/risotto-rice-with-mushrooms/`
 
-`Link: <https://dalgiardino.com/risotto-rice-with-mushrooms/>; rel="pip"; type="text/html"; hreflang="en"; title="Product information page", <https://dalgiardino.com/mushroom-squash-risotto/>; rel="recipeinfo"; type="text/html"; hreflang="en"; title="Recipe website", <https://dalgiardino.com/where-to-buy/>; rel="hasretailers"; type="text/html"; hreflang="en"; title="Retailers", <https://dalgiardino.com/about/>; rel="productsustainabilityinfo"; type="text/html"; hreflang="en"; title="sustainability and recycling"`
-
-(2019-11-15 Note [Issue 4](https://github.com/gs1/GS1_DigitalLink_Resolver_CE/issues/4))
+`Link: X-Resolver-ProcessTimeMS: 17
+Link: <https://dalgiardino.com/risotto-rice-with-mushrooms/>; rel="gs1:pip"; type="text/html"; hreflang="en"; title="Product information page", VAByAGEAbgBnACAAdABoAPQAbgBnACAAdABpAG4AIABzAKMebgAgAHAAaACpHm0A", <https://dalgiardino.com/mushroom-squash-risotto/>; rel="gs1:recipeInfo"; type="text/html"; hreflang="en"; title="Recipe website", <https://dalgiardino.com/where-to-buy/>; rel="gs1:hasRetailers"; type="text/html"; hreflang="en"; title="Retailers", <https://philarcher.org/gs1/2019/dalgiardino/where-to-buy/index.vi.html>; rel="gs1:hasRetailers"; type="text/html"; hreflang="vi"; title="data:text/plain;charset=utf-16;base64,TgBoAOAAIABiAOEAbgAgAGwAux4=", <https://dalgiardino.com/about/>; rel="gs1:productSustainabilityInfo"; type="text/html"; hreflang="en"; title="sustainability and recycling"`
 
 The 307 response and the Location header tell you the destination of the redirect that would be applied with a regular GET. The Link header includes a list of options (separated by commas), each of which has a number of fields (separated by semicolons):
 1.	The target URL
