@@ -7,6 +7,8 @@
     - [linkType=all](#linktypeall)
   - [Requesting a specific link](#requesting-a-specific-link)
   - [Downloading all available links in bulk](#downloading-all-available-links-in-bulk)
+- [Where's the community?](#wheres-the-community)
+- [Running a pilot](#running-a-pilot)
 
 # Quick Start Documentation for various GS1 Digital Link tools and libraries
 
