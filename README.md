@@ -12,7 +12,7 @@
 
 # Quick Start Documentation for various GS1 Digital Link tools and libraries
 
-GS1 conformant resolvers act primarily as redirection services and, with the exception of one command, do not usually return content directly. They are defined in chapter 8 of version 1.1 of the GS1 Digital Link standard (see [current draft](https://www.gs1.org/sites/default/files/docs/gsmp/gs1_digital_link_1.1_comrev_version_786.pdf)).
+GS1 conformant resolvers act primarily as redirection services and, with the exception of one command, do not usually return content directly. They are defined in chapter 7 of version 1.1 of the [GS1 Digital Link standard](https://www.gs1.org/docs/Digital-Link/GS1_Digital_link_Standard_i1.1.pdf).
 ## Overall aim
 The overall aim of a GS1 conformant resolver is that applications can resolve a GS1 identifier, such as a GTIN, SSCC or GLN, and be redirected to one or more resources relevant to the identified item.
 ## The basics
@@ -26,7 +26,7 @@ The GTIN for the (fictitious) Dal Giardino Risotto Rice with Mushrooms is `09506
 
 `GET https://id.gs1.org/gtin/9506000134352`
 ## Constructing the GS1 Digital Link URI
-GS1 Digital Link HTTP URIs are an expression of the full GS1 system of global identifiers for trade items, shipments, locations and more. This can become complex but you can construct the HTTP URI using the [GS1 Digital link toolkit](https://github.com/gs1/GS1DigitalLinkToolkit.js) – a JavaScript library that has its own documentation and an [online demo page](https://gs1.github.io/GS1DigitalLinkToolkit.js/) . The output of any GS1 barcode can be fed to that toolkit, along with the base URI of your resolver, and the corresponding GS1 Digital Link URI is returned. 
+GS1 Digital Link HTTP URIs are an expression of the full GS1 system of global identifiers for trade items, shipments, locations and more. This can become complex but you can construct the HTTP URI using the [GS1 Digital link toolkit](https://github.com/gs1/GS1DigitalLinkToolkit.js) – a JavaScript library that has its own documentation and an [online demo page](https://gs1.github.io/GS1DigitalLinkToolkit.js/). The output of any GS1 barcode can be fed to that toolkit, along with the base URI of your resolver, and the corresponding GS1 Digital Link URI is returned. 
 ## Accessing multiple links
 Redirection to the resource you most likely want is just the default behaviour. The resolver may have multiple links associated with a given identifier and these can be discovered in two ways:
 ### HTTP-only
@@ -50,10 +50,10 @@ For the example response above, the information contained in the Link: response 
 
 | Target URL | Link relationship type | Media type | Language | Title |
 | ---------- | ---------------------- | ---------- | -------- | ----- |
-| https://dalgiardino.com/risotto-rice-with-mushrooms | pip | text/html | en | Product information page |
-| https://dalgiardino.com/mushroom-squash-risotto/ | recipeInfo | text/html | en | Recipe website |
-| https://dalgiardino.com/where-to-buy | hasRetailers | text/html | en | Has retailers |
-| https://dalgiardino.com/about/ | productSustainabilityInfo | text/html | en | Product sustainability information |
+| https://dalgiardino.com/risotto-rice-with-mushrooms | gs1:pip | text/html | en | Product information page |
+| https://dalgiardino.com/mushroom-squash-risotto/ | gs1:recipeInfo | text/html | en | Recipe website |
+| https://dalgiardino.com/where-to-buy | gs1:hasRetailers | text/html | en | Has retailers |
+| https://dalgiardino.com/about/ | gs1:productSustainabilityInfo | text/html | en | Product sustainability information |
 
 ### linkType=all
 The same list of available links can be obtained as either a JSON object or an HTML page if you use the value ‘all’ for the linkType parameter. For example:
@@ -73,10 +73,14 @@ Rather than redirecting to the default link, a resolver will redirect requests f
 `https://id.gs1.org/gtin/9506000134352?linkType=recipeInfo`
 
 will redirect to a recipe for that product rather than the product information page, which is the default. 
-GS1 maintains a list of link types as part of its [Web vocabulary](https://mh1.eu/voc/?show=linktypes) but you can get a quick listing of the link types in use in a particular resolver by consulting its [Resolver Description File](https://id.gs1.org/.well-known/gs1resolver). You can get a list of all the GS1 link types as a JSON object from https://mh1.eu/voc/linktypes.php (link to be updated soon)
+GS1 maintains a list of link types as part of its [Web vocabulary](https://mh1.eu/voc/?show=linktypes) but you can get a quick listing of the link types in use in a particular resolver by consulting its [Resolver Description File](https://id.gs1.org/.well-known/gs1resolver). You can get a list of all the GS1 link types as a JSON object from https://mh1.eu/voc/linktypes.php (link to be updated soon).
 
 ## Downloading all available links in bulk
-It's possible to grab all available links as a bulk download. See the [separate page](https://gs1.github.io/DigitalLinkDocs/bulkdownload.html) for more information. Please note that this experimental feature is not part of GS1 Digital Link version 1.1 (draft) and is not yet filly implemented (it needs to include pagination, for example) but it will be considered for inclusion in version 1.2. It is implemented in the [community edition resolver](https://github.com/gs1/GS1_DigitalLink_Resolver_CE). 
+<p style="background-color:yellow">This feature is currently not functioning while we are working on re-writing the code for our resolver</p>
+It's possible to grab all available links as a bulk download. See the [separate page](https://gs1.github.io/DigitalLinkDocs/bulkdownload.html) for more information. Please note that this experimental feature is not part of GS1 Digital Link version 1.1 and is not yet filly implemented (it needs to include pagination, for example) but it will be considered for inclusion in version 1.2. It is implemented in the [community edition resolver](https://github.com/gs1/GS1_DigitalLink_Resolver_CE). 
+
+##Demo app
+A basic app is available that demonstrates the key features that you might want to include in apps of your own. It is for Android devices (only) and is not available through the Play Store so to install it you'll need to [download it from here](GS1ResolverClient.apk) and then override the warning about installing apps from an unnown source. The demo app depends on you having a scanner installed (such as [Barcode scanner](https://play.google.com/store/apps/details?id=com.qrcodescanner.barcodescanner). For emphasis, this is only intended as a demo - GS1 has no plans to create an actual app for use by consumers or business partners (we'll leave that to you). 
 
 # Where's the community?
 Please report any bugs with any of the software by raising an issue in the relevant repository. If you want to ask questions and generally be part of the broader developer community around GS1 Digital Link, please join our [Google group](https://groups.google.com/forum/#!forum/gs1-digital-link-developers)
