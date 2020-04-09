@@ -13,8 +13,8 @@
       color: #002c6c;
     }
 
-    section {
-      clear: both;
+    nav {
+      display:none;
     }
 
     figure.resolverFunction {
@@ -62,11 +62,37 @@
         margin-top: 1.5em;
       }
 
-      section#defaultTarget {
-        padding-top:2em;
+      section#resolverChoices {
+        margin-bottom:2em;
+      }
+
+      nav {
+        display: block;
+        background-color: #eee;
+        border: thin solid #F26334;
+        border-radius: 0.5em;
+        float:right;
+        font-size: small;
+        margin-left: 0.5em;
+        padding: 0 0.5em;
+      }
+
+      nav ul {
+        list-style-type: none;
+        padding-left: 0;
+      }
+      nav ul li {
+        line-height: 1.5em;
+      }
+
+      nav ul li span {
+        width:6em;
+        display: inline-block;
+        margin-left: 1em;
       }
 
     }
+
 
     p.egURL {
       text-align: center;
@@ -84,6 +110,15 @@
       text-decoration-color: #F26334;
     }
 
+    section#resolverChoices h2 {
+      color: black;
+      font-size: 1.2em;
+      font-weight: bold;
+      clear:both;
+      text-decoration-line: none;
+      text-align:center;
+    }
+
     p#authors {
       font-style: italic;
     }
@@ -91,6 +126,9 @@
     p#date, p#authors {
       text-align: right;
     }
+
+    dd {margin-bottom: 1em}
+
   </style>
 </head>
 <body>
@@ -99,7 +137,10 @@
 <p id="authors">Phil Archer, Mark Harrison, Henri Barthel (<span class="email">firstname.secondname@gs1.org</span>)</p>
 <p id="date"><time datetime="2020-04-09">Draft: 9 April 2020</time></p>
 </header>
-<main>
+
+<nav id="toc"><h2>Contents</h2></nav>
+
+<main id="main">
 <section id="intro"><h2>Introduction and Aim</h2>
 <p>The GS1 Digital Link standard [<a href="#dl">DL</a>] offers a means through which identifiers that exist offline can be resolved to multiple, related online resources. In the simplest example, a barcode is scanned to extract the identifier which is then resolved to a Web page that describes the barcoded item. This superficial example is only scratching the surface of much more powerful underlying mechanism. It was designed to service the needs of the GS1 community (manufacturers, supply chains and retailers), but the principles do not depend on the GS1 system and can readily be transferred to other identification systems.</p>
 <p>It has much in common with existing resolvable identifier systems such as <a href="https://www.doi.org/">DOI</a> and <a href="https://orcid.org/">ORCiD</a>, and the emerging work on Decentralized Identifiers [<a href="#did">DID</a>], as well as existing applications such as <a href="https://en.wikipedia.org/wiki/HATEOAS">HATEOAS</a>. As explained elsewhere [<a href="#hoi">HOI</a>], GS1 Digital Link does not introduce any new technology, but it does use and combine existing technologies from the Web and elsewhere in a specific way.</p>
@@ -107,13 +148,13 @@
 </section>
 
 <section id="overview"><h2>A brief overview of GS1 Digital Link</h2>
-<p>The standard provides a structure that allows GS1 identifiers to be encoded as HTTP URIs. The potential is that every item that carries one or more GS1 identifiers can be looked up online. Where the identifiers are in their native syntax, i.e. not as a Web URI, they can be converted using a simple algorithm. Likewise, where they are encoded as a Web URI, those identifiers can be extracted and passed on to existing systems as now. Crucially, when those Web URIs are encoded in, say, a QR code or NFC tag, they can also be scanned by a smartphone <em>without</em> needing a specialist app, since mobile Web browsers can access the smartphone camera and open source toolkits exist for decoding of URIs from QR codes.</p>
-<p>Products, shipments, medicines and other items that typically use GS1 identifiers are likely to be associated with multiple related online information resources, such as instruction manuals, patient safety leaflets, master data, recipe ideas, a variety of images and video assets, a Web page that describes the item and so on. Whilst a GS1 Digital Link URI may point to a single resource, just like any other URL, it is most useful and most functional if it points to an intermediate resolver service.</p>
+<p>The standard provides a structure that allows GS1 identifiers to be encoded as HTTP URIs. The potential is that every item that carries one or more GS1 identifiers can be looked up online. Where the identifiers are in their native syntax, i.e. not as a Web URI, they can be converted using a simple algorithm. Likewise, where they are encoded as a Web URI, those identifiers can be extracted and passed on to existing systems as now. Crucially, when those Web URIs are encoded in, say, a QR code or NFC tag, they can also be scanned by a smartphone <em>without</em> needing a specialist app, since mobile Web browsers can access the smartphone camera and open source toolkits exist for the decoding of URIs from QR codes.</p>
+<p>Products, shipments, medicines and other items that typically use GS1 identifiers are likely to be associated with multiple related online information resources, such as instruction manuals, patient safety leaflets, master data, recipe ideas, a variety of images and video assets, a Web page that describes the item, and so on. Whilst a GS1 Digital Link URI may point to a single resource, just like any other URL, it is most useful and most functional if it points to an intermediate resolver service.</p>
 <p>The GS1 Digital Link standard defines a type of resolver that uses link relation types, as well as things like human language and media types, to annotate links to those resources in a way that can be accessed programmatically. Resolvers can be queried in three ways:</p><ol>
   <li>A default redirect, no special interaction required. For products, it is expected that the manufacturer will, by default, direct requests to the consumer-facing product information page and this is what would be returned from a simple scan of a QR code on a pack.</li>
   <li>An app can request a specific type of information, that is, the request can specify a particular link relation type. If available, the resolver’s default behavior is overridden and the request is redirected to the resource that matches the specified link type.</li>
   <li>An app can simply ask for all available links associated with the item.</li></ol>
-<p>The standard includes further features, including a sophisticated compression/decompression algorithm and detailed semantics. This means that for every identifier there is an equivalent RDF property, a defined value space, and a compression/decompression algorithm. The approach taken can certainly be applied elsewhere but the details of the GS1 Digital Link standard are specific to the GS1 system and are not easily transferrable to non-GS1 environments.</p>
+<p>The standard includes further features, including a sophisticated compression/decompression algorithm and detailed semantics. This means that for every identifier there is an equivalent RDF property, a defined value space, and compression/decompression parameters. The approach taken can certainly be applied elsewhere but the details of the GS1 Digital Link standard are specific to the GS1 system and are not easily transferrable to non-GS1 environments.</p>
 <p>It should also be noted that, at the time of writing, there remain a number of features that have yet to be defined in the standard, the evolution of which is expected to continue until at least the end of 2021.</p>
 <p>The following sections detail a series of principles used in the design of GS1 Digital Link that it is believed will be most readily applied elsewhere with the potential for at least a degree of interoperability across a range of identification systems, as well as a broader implementation community.</p>
 </section>
@@ -133,7 +174,7 @@
 </table>
 
 <p>The fourth data field is not an identifier in the usual sense of the word, but an attribute. That is, a characteristic of the item, in this case its expiry date. Other attributes in the GS1 system include things like measured weight, delivery locations and shipment contents.</p>
-<p>The GS1 system is designed to apply to physical objects so there is always 'a thing.' In that context it is the combination of all the available data that identifies the item in supply chain data systems and this <em>can</em> include things like an expiry date, measured weight and delivery destination. The common distinction between class and instance identifiers on the one hand and attributes or properties on the other, is therefore not clear cut. GS1 Digital Link, however, works online in the absence of a physical, identified object. Therefore, an attempt to recognize the difference between identifiers and attributes needed to be made. In informational terms, the standard treats GTIN as a class, the batch/lot as a sub class, and a serial number as an instance identifier. Thus there is a hierarchy and therefore a natural order to those identifiers, since it is the combination of GTIN and batch/lot identifier or GTIN and serial number that is globally unambiguous. For this reason, they are encoded in the URI path thus:</p>
+<p id="sysArchDiff">The GS1 system is designed to apply to physical objects so there is always 'a thing.' In that context it is the combination of all the available data that identifies the item in supply chain data systems and this <em>can</em> include things like an expiry date, measured weight and delivery destination. The common distinction between class and instance identifiers on the one hand and attributes or properties on the other, is therefore not clear cut. GS1 Digital Link, however, works online in the absence of a physical, identified object. Therefore, an attempt to recognize the difference between identifiers and attributes needed to be made. In informational terms, the standard treats GTIN as a class, the batch/lot as a sub class, and a serial number as an instance identifier. Thus there is a hierarchy and therefore a natural order to those identifiers, since it is the combination of GTIN and batch/lot identifier or GTIN and serial number that is globally unambiguous. For this reason, they are encoded in the URI path thus:</p>
 <p class="egURL"><code>https://example.com/gtin/09506000134352/lot/ABCDEF/ser/1234</code><p>
 <p>Since attributes like expiry dates and measured weights have no specific order (an item that expires on 2022-12-25 and weighs 500g is no different from one that weighs 500g and expires on 2022-12-25), they appear in the URI query string. Therefore, the complete GS1 Digital Link URI that carries the same information as the 2D barcode above is</p>
 <p class="egURL"><code>https://example.com/gtin/09506000134352/lot/ABCDEF/ser/1234?exp=221225</code></p>
@@ -156,8 +197,8 @@
 <p>Firstly, each resolver <em>is</em> sovereign. There is no requirement that every resolver redirects to the same resources. This is in contrast to, for example, DOIs where each resolver is part of a synchronized network that returns the same response. Whether you resolve <code>10.1103/PhysRevD.89.032002</code> at <a href="https://doi.org/10.1103/PhysRevD.89.032002">https://doi.org/10.1103/PhysRevD.89.032002</a> or <a href="https://hdl.handle.net/10.1103/PhysRevD.89.032002">https://hdl.handle.net/10.1103/PhysRevD.89.032002</a> you are redirected to the same item or set of resources.</p>
 <p>The thinking at GS1 is that different resolvers can serve different communities. As an example, a resolver set up to serve the needs of people with a dietary intolerance might point to information specifically about the allergens in a particular food item. This information content will almost certainly also be available from the manufacturer’s website but might not be presented in the same way (e.g. human-readable vs machine-interpretable Linked Data) or as prominently.</p>
 <p>Secondly, the standard does explicitly warn that just because a URL looks like a GS1 Digital Link URI it may not be and that developers should therefore make no assumptions based purely on the structure of the URL.  As noted earlier, a GS1 Digital Link URI can serve not only as a locator for information but as a Linked Data identifier within RDF triples.</p>
-<p>Thirdly, the standard mandates that all conformant resolvers MUST include a Resolver Description File at a well-known location, so it is possible to check, a priori, whether a given GS1 Digital Link URI includes the address of a conformant resolver. The structure of that Resolver Description File is tailored to the GS1 context but a more general version could be defined.</p>
-<p>Finally, by making sure that every resolver is sovereign, and that applications may use any resolver they choose, there is no single point of failure. The resolver at id.gs1.org is cited directly in the standard and is the basis for canonical URIs, but there is no requirement that it should be used by an application. It is intended to be available as a 'resolver of last resort' especially when the appropriate domain name (e.g. of the brand owner) is initially unknown and the canonical GS1 Digital Link URI is constructed from data read from a barcode that lacks such information about domain name; the resolver at id.gs1.org will only redirect to online resources specified by the respective licensee of that particular GS1 identification key (typically the brand owner for a product).</p>
+<p>Thirdly, the standard mandates that all conformant resolvers MUST include a Resolver Description File at a well-known location, so it is possible to check, <i>a priori</i>, whether a given GS1 Digital Link URI includes the address of a conformant resolver. The structure of that Resolver Description File is tailored to the GS1 context but a more general version could be defined.</p>
+<p id="canonicalResolver">Finally, by making sure that every resolver is sovereign, and that applications may use any resolver they choose, there is no single point of failure. The resolver at id.gs1.org is cited directly in the standard and is the basis for canonical URIs, but there is no requirement that it should be used by an application. It is intended to be available as a 'resolver of last resort' especially when the appropriate domain name (e.g. of the brand owner) is initially unknown and the canonical GS1 Digital Link URI is constructed from data read from a barcode that lacks such information about domain name. Separate from the standard, but as an important business decision, the resolver at id.gs1.org will only redirect to online resources specified by the respective licensee of that particular GS1 identification key (typically the brand owner for a product).</p>
 </section>
 
 <section id="metadata" class="principle"><h2>For every link, there is a minimum set of metadata</h2>
@@ -168,8 +209,7 @@
 
 
 
-<section id="resolverChoices"><h2>Three ways to use a resolver</h2>
-
+<section id="resolverChoices">
 <figure id="default" class="resolverFunction">
   <img src="manOnRlyLine.jpg" alt="A man strolls down a single railway line, clearly following the only available route. We see him from behind, his hands clasped behind his back" />
   <figcaption>Default 
@@ -181,7 +221,6 @@
 <!--    <img src="https://www.w3.org/2013/Talks/0614_phila_flanders/cc_icon_sharealike_small.gif" alt="share alike"> -->
     Some rights reserved</a></span></figcaption>
 </figure>
-
 
 <figure id="specific" class="resolverFunction">
   <img src="pointing.jpg" alt="A young man, wearing a cap and hoodie-style jacket, looks askance at the camera to which he points." />
@@ -204,6 +243,7 @@
 <!--    <img src="https://www.w3.org/2013/Talks/0614_phila_flanders/cc_icon_sharealike_small.gif" alt="share alike"> -->
     Some rights reserved</a></span></figcaption>
 </figure>
+<h2>Three ways to use a resolver</h2>
 </section>
 
 <section id="defaultTarget" class="principle"><h2>For every identified item, there is a default defined target resource</h2>
@@ -212,8 +252,8 @@
 </section>
 
 <section id="specificRequest" class="principle"><h2>Requesting a specific link type</h2>
-<p>The GS1 Digital Link standard defines a URI query string parameter of <code>linkType</code> that carries instructions to the resolver. It is not part of the GS1 identification system but is a Linked Data property defined within the GS1 Web vocabulary [<a href="#webVoc">WebVoc</a>] for example <code>gs1:pip</code> for a link to a 'Product Information Page'.</p>
-<p>The value of the <code>linkType</code> parameter can be a URI (either in full or as a CURIE), or the word <code>all</code> (see next principle). If the resolver has a link available that matches that link type, then it should redirect to it (with an HTTP status code of 307). The resolver may, of course, take note of additional factors like language, media type and context. Whilst the user agent’s preference for language and media type are transmitted via the HTTP request headers, the context parameter can only be transmitted as part of the URI query string. Support for <code>lang</code> as a query parameter is optional.</p>
+<p id="ltValues">The GS1 Digital Link standard defines a URI query string parameter of <code>linkType</code> that carries instructions to the resolver. Values for the parameter are Linked Data properties defined within the GS1 Web vocabulary [<a href="#webVoc">WebVoc</a>], for example <code>gs1:pip</code> for a link to a 'Product Information Page.'</p>
+<p>The value of the <code>linkType</code> parameter can be a URI (either in full or as a CURIE), or the word <code>all</code> (see next principle). If the resolver has a link available that matches that link type, then it should redirect to it (with an HTTP status code of 307). The resolver may, of course, take note of additional factors like language, media type and context. Whilst the user agent’s preference for language and media type are transmitted via the HTTP request headers, the <code>context</code> parameter can only be transmitted as part of the URI query string. Support for <code>lang</code> as a query parameter is optional.</p>
 </section>
 
 <section id="all" class="principle"><h2>Requesting all available links</h2>
@@ -247,7 +287,7 @@
   <dt id="curie">[CURIE]</dt>
   <dd><a href="https://www.w3.org/TR/curie/">CURIE Syntax 1.0</a> A syntax for expressing Compact URIs. W3C Working Group Note. Mark Birbeck, Shane McCarron. 16 December 2010</dd>
   <dt id="did">[DID]</dt>
-  <dd><a href="https://www.w3.org/TR/did-core/">Decentralized Identifiers (DIDs) v1.0</a> Core architecture, data model, and representations. W3C Working Draft. Drummond Reed, Manu Sporny, Markus Sabadello. April 2020.</dd>
+  <dd><a href="https://www.w3.org/TR/2020/WD-did-core-20200408/">Decentralized Identifiers (DIDs) v1.0</a> Core architecture, data model, and representations. W3C Working Draft. Drummond Reed, Manu Sporny, Markus Sabadello. 8 April 2020.</dd>
   <dt id="dl">[DL]</dt>
   <dd><a href="https://www.gs1.org/docs/Digital-Link/GS1_Digital_link_Standard_i1.1.pdf">GS1 Digital Link 1.1</a> (PDF). GS1 Standard. Mark Harrison, Phil Archer et al. Ratified February 2020</dd>
   <dt id="hoi">[HOI]</dt>
@@ -264,5 +304,31 @@
 
 </main>
 
+<script> // Write the ToC
+  let sections = document.getElementById('main').querySelectorAll('section');
+  let ul = document.createElement('ul');
+  let h2;
+  let principleNumber = 0;
+  for (let i = 0; i < sections.length; i++) {
+    if ((sections[i].id !== 'resolverChoices') && (h2 = sections[i].querySelector('h2'))) {
+      let li = document.createElement('li');
+      let a = document.createElement('a');
+      a.href = '#' + sections[i].id;
+      if (sections[i].classList.contains('principle')) {
+        principleNumber++;
+        let pSpan = document.createElement('span');
+        pSpan.appendChild(document.createTextNode('Principle ' + principleNumber + ': '));
+        a.appendChild(pSpan);
+      }
+      a.appendChild(document.createTextNode(h2.innerHTML));
+      li.appendChild(a);
+      ul.appendChild(li);
+      // console.log (sections[i].id + ' is ' + h2.innerHTML);
+    }
+  }
+  document.getElementById('toc').appendChild(ul);
+
+
+</script>
 
 </body></html>
