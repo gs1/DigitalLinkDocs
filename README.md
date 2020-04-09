@@ -86,5 +86,7 @@ A basic app is available that demonstrates the key features that you might want 
 # Where's the community?
 Please report any bugs with any of the software by raising an issue in the relevant repository. If you want to ask questions and generally be part of the broader developer community around GS1 Digital Link, please join our [Google group](https://groups.google.com/forum/#!forum/gs1-digital-link-developers)
 
+People are always interested to see what others are working on. Please feel free to [add to the wiki](https://github.com/gs1/DigitalLinkDocs/wiki/GS1-Digital-Link-Use-Cases)!
+
 # Running a pilot
 The resolver at `id.gs1.org` is available for pilots and tests. GS1 Member Organisations and GCP licensees may request an account on the resolver. Contact <a href="mailto:phil.archer@gs1.org">Phil Archer</a> for details. Developers are strongly encouraged to join the [GS1 Digital Link developers' Google group](https://groups.google.com/forum/#!forum/gs1-digital-link-developers)
