@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width" />
-  <title>10 Transferable Principles from GS1 Digital Link</title>
+  <title>11 Transferable Principles from GS1 Digital Link</title>
   <style>
     body {
       font-family: sans-serif;
@@ -105,7 +105,7 @@
       text-decoration-line: none;
       padding-left: 0.3em;
     }
-    h2, p#date {
+    h1, h2, p#date {
       text-decoration-line: underline;
       text-decoration-color: #F26334;
     }
@@ -133,7 +133,7 @@
 </head>
 <body>
 
-<header><h1>10 Transferable Principles from GS1 Digital Link</h1>
+<header><h1>11 Transferable Principles from GS1 Digital Link</h1>
 <p id="authors">Phil Archer, Mark Harrison, Henri Barthel (<span class="email">firstname.secondname@gs1.org</span>)</p>
 <p id="date"><time datetime="2020-04-09">Draft: 9 April 2020</time></p>
 </header>
@@ -161,6 +161,21 @@
 
 <section id="doNoHarm" class="principle"><h2>Do no harm</h2>
 <p>After nearly 50 years, the GS1 system of identifiers is very mature and widely implemented. The GS1 Digital Link standard introduces a new syntax for those identifiers, matching that of a URL, but does not affect their semantics in any way. An important result is that a set of GS1 identifiers in its traditional syntax and a GS1 Digital Link HTTP URI carry <em>exactly</em> the same informational content.</p>
+</section>
+
+<section id="noNeedForLookUp" class="principle"><h2>No online lookup necessary</h2>
+  <p>Even when encoded in a Web URI, it must be possible to access GS1 identifiers <em>without</em> making an online look up. 
+    It cannot be the case that, for example, a point of sale scanner fails because of a problem with internet connectivity.</p>
+  <p>This principle is closely related to the next.</p>
+</section>
+
+<section id="resolverNotId" class="principle"><h2>The resolver is not part of the identifier</h2>
+<p>This is where we need to be very careful as the domain name is very much a part of an HTTP URI. It is the authority over the rest of the identifier and every domain name is sovereign. This is emphasized in <i>URI Design and Ownership</i> [<a href="#bcp190">BCP190</a>] that makes clear that standards should not constrain URI design beyond a specific authority. However, GS1 Digital Link includes a number of features that mitigate the apparent breach of best practice.</p>
+  <p>Firstly, <em>each resolver is sovereign</em>. There is no requirement that every resolver redirects to the same resources. This is in contrast to, for example, DOIs where each resolver is part of a synchronized network that returns the same response. Whether you resolve <code>10.1103/PhysRevD.89.032002</code> at <a href="https://doi.org/10.1103/PhysRevD.89.032002">https://doi.org/10.1103/PhysRevD.89.032002</a> or <a href="https://hdl.handle.net/10.1103/PhysRevD.89.032002">https://hdl.handle.net/10.1103/PhysRevD.89.032002</a> you are redirected to the same item or set of resources.</p>
+<p>The thinking at GS1 is that different resolvers can serve different communities. As an example, a resolver set up to serve the needs of people with a dietary intolerance might point to information specifically about the allergens in a particular food item. This information content will almost certainly also be available from the manufacturer’s website but might not be presented in the same way (e.g. human-readable vs machine-interpretable Linked Data) or as prominently.</p>
+<p>Secondly, the standard does explicitly warn that just because a URL looks like a GS1 Digital Link URI it may not be and that developers should therefore make no assumptions based purely on the structure of the URL.  As noted earlier, a GS1 Digital Link URI can serve not only as a locator for information but as a Linked Data identifier within RDF triples.</p>
+<p>Thirdly, the standard mandates that all conformant resolvers MUST include a Resolver Description File at a well-known location, so it is possible to check, <i>a priori</i>, whether a given GS1 Digital Link URI includes the address of a conformant resolver. The structure of that Resolver Description File is tailored to the GS1 context but a more general version could be defined.</p>
+<p id="canonicalResolver">Finally, by making sure that every resolver is sovereign, and that applications may use any resolver they choose, there is no single point of failure. The resolver at id.gs1.org is cited directly in the standard and is the basis for canonical URIs, but there is no requirement that it should be used by an application. It is intended to be available as a 'resolver of last resort' especially when the appropriate domain name (e.g. of the brand owner) is initially unknown and the canonical GS1 Digital Link URI is constructed from data read from a barcode that lacks such information about domain name. Separate from the standard, but as an important business decision, the resolver at id.gs1.org will only redirect to online resources specified by the respective licensee of that particular GS1 identification key (typically the brand owner for a product).</p>
 </section>
 
 <section id="pathQuery" class="principle"><h2>Identifiers in the path, attributes in the query string</h2>
@@ -192,22 +207,11 @@
 <p>The formal structure of a GS1 Digital Link URI is provided in very precise detail using <abbr title="Augmented Backus-Naur Format">ABNF</abbr> grammar [<a href="#rfc7405">RFC7405</a>]. It includes detail of all the valid values for each of the GS1 identifiers (whether numeric only, alphanumeric, limited character sets and lengths etc.). As a result, the GS1-specific details are not readily transferrable but the overall structure is transferrable and a generic workflow for constructing equivalent <abbr title="Augmented Backus-Naur Format">ABNF</abbr> grammars can be defined for use with other identification systems, using the same design principles.</p>
 </section>
 
-<section id="resolverNotId" class="principle"><h2>The resolver is not part of the identifier</h2>
-<p>This is where we need to be very careful as the domain name is very much a part of an HTTP URI. It is the authority over the rest of the identifier and every domain name is sovereign. This is emphasized in <i>URI Design and Ownership</i> [<a href="#bcp190">BCP190</a>] that makes clear that standards should not constrain URI design beyond a specific authority. However, GS1 Digital Link includes a number of features that mitigate the apparent breach of best practice.</p>
-<p>Firstly, each resolver <em>is</em> sovereign. There is no requirement that every resolver redirects to the same resources. This is in contrast to, for example, DOIs where each resolver is part of a synchronized network that returns the same response. Whether you resolve <code>10.1103/PhysRevD.89.032002</code> at <a href="https://doi.org/10.1103/PhysRevD.89.032002">https://doi.org/10.1103/PhysRevD.89.032002</a> or <a href="https://hdl.handle.net/10.1103/PhysRevD.89.032002">https://hdl.handle.net/10.1103/PhysRevD.89.032002</a> you are redirected to the same item or set of resources.</p>
-<p>The thinking at GS1 is that different resolvers can serve different communities. As an example, a resolver set up to serve the needs of people with a dietary intolerance might point to information specifically about the allergens in a particular food item. This information content will almost certainly also be available from the manufacturer’s website but might not be presented in the same way (e.g. human-readable vs machine-interpretable Linked Data) or as prominently.</p>
-<p>Secondly, the standard does explicitly warn that just because a URL looks like a GS1 Digital Link URI it may not be and that developers should therefore make no assumptions based purely on the structure of the URL.  As noted earlier, a GS1 Digital Link URI can serve not only as a locator for information but as a Linked Data identifier within RDF triples.</p>
-<p>Thirdly, the standard mandates that all conformant resolvers MUST include a Resolver Description File at a well-known location, so it is possible to check, <i>a priori</i>, whether a given GS1 Digital Link URI includes the address of a conformant resolver. The structure of that Resolver Description File is tailored to the GS1 context but a more general version could be defined.</p>
-<p id="canonicalResolver">Finally, by making sure that every resolver is sovereign, and that applications may use any resolver they choose, there is no single point of failure. The resolver at id.gs1.org is cited directly in the standard and is the basis for canonical URIs, but there is no requirement that it should be used by an application. It is intended to be available as a 'resolver of last resort' especially when the appropriate domain name (e.g. of the brand owner) is initially unknown and the canonical GS1 Digital Link URI is constructed from data read from a barcode that lacks such information about domain name. Separate from the standard, but as an important business decision, the resolver at id.gs1.org will only redirect to online resources specified by the respective licensee of that particular GS1 identification key (typically the brand owner for a product).</p>
-</section>
-
 <section id="metadata" class="principle"><h2>For every link, there is a minimum set of metadata</h2>
 <p>In order to be able to make sense of multiple resources associated with a given identifier, each link MUST have associated metadata. As a minimum, and most crucially, this includes the link relation type (referred to as the link type in the GS1 standard). It also requires a human readable title so that applications are able to present end users with appropriate text for a hyperlink.</p>
 <p>Optional additional metadata includes the language of the target resource, its media type and a further ‘context’ variable, the value space for which is not defined to allow maximum flexibility. A typical use for the context variable would be the territory to which the link applies or perhaps a particular configuration of an online service that complies with a specific regulation, especially when that same service endpoint might support multiple configurations for different regulations in different jurisdictions.</p>
 <p>The standard draws heavily on the Web Linking standard [<a href="#rfc8288">RFC8288</a>] to define the metadata associated with each link and takes advantage of its support for Compact URI Expressions [<a href="#curie">CURIE</a>] as custom link relation types. GS1 defines its set of link relation types in its Web vocabulary [<a href="#webVoc">WebVoc</a>] and recognizes terms from <a href="https://schema.org/">schema.org</a>.</p>
 </section>
-
-
 
 <section id="resolverChoices">
 <figure id="default" class="resolverFunction">
@@ -251,12 +255,12 @@
 <p>Such a default is defined primarily in terms of the link type – that is, for a given identifier, redirection to a link of the defined link type is the default response, but this may vary according to the other available parameters, notably language and media type, which are transmitted in the user agent’s HTTP request.</p>
 </section>
 
-<section id="specificRequest" class="principle"><h2>Requesting a specific link type</h2>
+<section id="specificRequest" class="principle"><h2>Resolvers can be instructed to redirect to a target resource of a specific type</h2>
 <p id="ltValues">The GS1 Digital Link standard defines a URI query string parameter of <code>linkType</code> that carries instructions to the resolver. Values for the parameter are Linked Data properties defined within the GS1 Web vocabulary [<a href="#webVoc">WebVoc</a>], for example <code>gs1:pip</code> for a link to a 'Product Information Page.'</p>
 <p>The value of the <code>linkType</code> parameter can be a URI (either in full or as a CURIE), or the word <code>all</code> (see next principle). If the resolver has a link available that matches that link type, then it should redirect to it (with an HTTP status code of 307). The resolver may, of course, take note of additional factors like language, media type and context. Whilst the user agent’s preference for language and media type are transmitted via the HTTP request headers, the <code>context</code> parameter can only be transmitted as part of the URI query string. Support for <code>lang</code> as a query parameter is optional.</p>
 </section>
 
-<section id="all" class="principle"><h2>Requesting all available links</h2>
+<section id="all" class="principle"><h2>Resolvers can be instructed to return all available links to related resources</h2>
 <p>If the value of the <code>linkType</code> parameter is <code>all</code>, then the resolver MUST NOT redirect. Instead, it MUST return a list of all the available links associated with the identified item. The GS1 standard goes on to require that the list MUST be available as a JSON object, SHOULD be available as an HTML page and MAY be available in other serializations, such as JSON-LD. The choice of which format is returned is determined through content negotiation.</p> 
 <p>At the time of writing, the exact structure of the JSON object has not been defined. Such a definition is a priority for the working group. A particular implementation challenge has been how to treat language, media type and context as being of equivalent importance, i.e. with no hierarchy.</p>
 </section>
@@ -275,7 +279,7 @@
 </section>
 
 <section id="conclusion"><h2>Conclusion</h2>
-<p>The GS1 Digital Link standard contains a great deal of detail not included here. Some of that might also be appropriate in other contexts but the 10 principles cited above seem to be the most likely to be important in any similar context. GS1 would be interested in developing these ideas further in a more general purpose standard.</p>
+<p>The GS1 Digital Link standard contains a great deal of detail not included here. Some of that might also be appropriate in other contexts but the 11 principles cited above seem to be the most likely to be important in any similar context. GS1 would be interested in developing these ideas further in a more general purpose standard.</p>
 </section>
 
 
