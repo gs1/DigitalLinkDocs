@@ -83,6 +83,9 @@ It's possible to grab all available links as a bulk download. See the [separate 
 ## Demo app
 A basic app is available that demonstrates the key features that you might want to include in apps of your own. It is for Android devices (only) and is not available through the Play Store so to install it you'll need to [download it from here](https://philarcher.org/temp/GS1ResolverClient.apk) and then override the warning about installing apps from an unnown source. The demo app depends on you having a scanner installed (such as [Barcode scanner](https://play.google.com/store/apps/details?id=com.qrcodescanner.barcodescanner). For emphasis, this is only intended as a demo - GS1 has no plans to create an actual app for use by consumers or business partners (we'll leave that to you). 
 
+# Underlying principles
+There are a number of principles that underlie the GD1 Digital Link standard, principles that could readily be applied elsewhere, that is, outside the GS1 identifier system. These are [detailed separately](https://gs1.github.io/DigitalLinkDocs/principles/).
+
 # Where's the community?
 Please report any bugs with any of the software by raising an issue in the relevant repository. If you want to ask questions and generally be part of the broader developer community around GS1 Digital Link, please join our [Google group](https://groups.google.com/forum/#!forum/gs1-digital-link-developers)
 
