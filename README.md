@@ -7,7 +7,8 @@
     - [linkType=all](#linktypeall)
   - [Requesting a specific link](#requesting-a-specific-link)
   - [Downloading all available links in bulk](#downloading-all-available-links-in-bulk)
-  - [Demo app](#Demo-app)
+  - [Demo app](#demo-app)
+- [Underlying principles](#underlying-principles)
 - [Where's the community?](#wheres-the-community)
 - [Running a pilot](#running-a-pilot)
 
