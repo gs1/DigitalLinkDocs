@@ -1,3 +1,7 @@
+.markdown-here-wrapper span.scream {
+  color: red;
+  font-weight: bold;
+}
 - [Quick Start Documentation for various GS1 Digital Link tools and libraries](#quick-start-documentation-for-various-gs1-digital-link-tools-and-libraries)
   - [Overall aim](#overall-aim)
   - [The basics](#the-basics)
@@ -32,7 +36,7 @@ GS1 Digital Link HTTP URIs are an expression of the full GS1 system of global id
 ## Accessing multiple links
 Redirection to the resource you most likely want is just the default behaviour. The resolver may have multiple links associated with a given identifier and these can be discovered in two ways:
 ### HTTP-only
-You can do an HTTP HEAD request on any GS1 Digital Link URI and suppress your client’s redirection. The resolver will include the full list of available links in its Link response header. <span style="color:red">Note</span> this feature is likely to evolve to make use of the [Linkset](https://tools.ietf.org/html/draft-wilde-linkset-06) proposal that will provide the list of links with the *same* syntax but in a linked text file. For now though, the following remains true.
+You can do an HTTP HEAD request on any GS1 Digital Link URI and suppress your client’s redirection. The resolver will include the full list of available links in its Link response header. <span class="scream">Note</span> this feature is likely to evolve to make use of the [Linkset](https://tools.ietf.org/html/draft-wilde-linkset-06) proposal that will provide the list of links with the *same* syntax but in a linked text file. For now though, the following remains true.
 
 The key elements of the HTTP trace for the Dal Giardino example are as follows:
 
@@ -69,7 +73,7 @@ The JSON object returned to clients specifying that media type in the HTTP reque
 3. 	The media type of the target resource
 4.	A further value called context.
 The value space (e.g. permitted / defined values) for the context parameter is not defined in the GS1 Digital Link standard but is defined separately for each resolver in the Resolver Description File that can be found as a JSON object at `/.well-known/gs1resolver` for any GS1 conformant resolver (see the [id.gs1.org resolver example](https://id.gs1.org/.well-known/gs1resolver)). The values can be expressed either as an enumerated list (in an array provided as the value of `supportedContextValuesEnumerated` and/or by naming one or more external lists of values as the value of the `supportedContextValuesExternal` property).
-*NB* The structure of the returned JSON is *not stable*. At the time of writing (2020-06-18), we're working on version 1.2 of the standard and that document will define the formal structure (there will be a JSON schema etc.). We are very likely to match the idea proposed in the [Linkset](https://tools.ietf.org/html/draft-wilde-linkset-06) proposal. In line with those ideas, we're also likely to recommend the value of the `linkType` parameter by `linkset` rather than the current `all` (which will be deprecated). Please be sure to be ready to adjust your code for handling that JSON. See the bottom of the page for how you can make sure you're kept up to date.
+<span class="scream">NB</span> The structure of the returned JSON is *not stable*. At the time of writing (2020-06-18), we're working on version 1.2 of the standard and that document will define the formal structure (there will be a JSON schema etc.). We are very likely to match the idea proposed in the [Linkset](https://tools.ietf.org/html/draft-wilde-linkset-06) proposal. In line with those ideas, we're also likely to recommend the value of the `linkType` parameter by `linkset` rather than the current `all` (which will be deprecated). Please be sure to be ready to adjust your code for handling that JSON. See the bottom of the page for how you can make sure you're kept up to date.
 ## Requesting a specific link
 Rather than redirecting to the default link, a resolver will redirect requests for a specific link type if one is available. For example:
 
