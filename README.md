@@ -28,7 +28,7 @@ The GTIN for the (fictitious) Dal Giardino Risotto Rice with Mushrooms is `09506
 
 `GET https://id.gs1.org/gtin/9506000134352`
 ## Constructing the GS1 Digital Link URI
-GS1 Digital Link HTTP URIs are an expression of the full GS1 system of global identifiers for trade items, shipments, locations and more. This can become complex but you can construct the HTTP URI using the [GS1 Digital link toolkit](https://github.com/gs1/GS1DigitalLinkToolkit.js) – a JavaScript library that has its own documentation and an [online demo page](https://gs1.github.io/GS1DigitalLinkToolkit.js/). The output of any GS1 barcode can be fed to that toolkit, along with the base URI of your resolver, and the corresponding GS1 Digital Link URI is returned. 
+GS1 Digital Link HTTP URIs are an expression of the full GS1 system of global identifiers for trade items, shipments, locations and more. This can become complex but you can construct the HTTP URI using the [GS1 Digital link toolkit](https://github.com/gs1/GS1DigitalLinkCompressionPrototype) – a JavaScript library that has its own documentation and an [online demo page](https://gs1.github.io/GS1DigitalLinkCompressionPrototype/). The output of any GS1 barcode can be fed to that toolkit, along with the base URI of your resolver, and the corresponding GS1 Digital Link URI is returned. 
 ## Accessing multiple links
 Redirection to the resource you most likely want is just the default behaviour. The resolver may have multiple links associated with a given identifier and these can be discovered in two ways:
 ### HTTP-only
