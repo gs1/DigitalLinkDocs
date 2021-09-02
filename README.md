@@ -30,11 +30,13 @@ The GTIN for the (fictitious) Dal Giardino Risotto Rice with Mushrooms is `09506
 
 The `01` is the name of the GS1 identifier all of which are numeric. Within GS1, these are known as 'application identifiers', a full list of which is [maintained by GS1](https://www.gs1.org/standards/barcodes/application-identifiers). `01` is the most common as it is the application identifier for the GTIN.
 ## Constructing the GS1 Digital Link URI
-GS1 Digital Link HTTP URIs are an expression of the full GS1 system of global identifiers for trade items, shipments, locations and more. This can become complex but you can construct the HTTP URI using the [GS1 Digital link toolkit](https://github.com/gs1/GS1DigitalLinkCompressionPrototype) – a JavaScript library that has its own documentation and an [online demo page](https://gs1.github.io/GS1DigitalLinkCompressionPrototype/). The output of any GS1 barcode can be fed to that toolkit, along with the base URI of your resolver, and the corresponding GS1 Digital Link URI is returned. 
+GS1 Digital Link HTTP URIs are an expression of the full GS1 system of global identifiers for trade items, shipments, locations and more. You can get a good idea of how this works in the [2D barcode generator](https://gs1.github.io/2d-barcode-generator/).
+
+<!-- (removed for duration of GS1 US hackathon) This can become complex but you can construct the HTTP URI using the [GS1 Digital link toolkit](https://github.com/gs1/GS1DigitalLinkCompressionPrototype) – a JavaScript library that has its own documentation and an [online demo page](https://gs1.github.io/GS1DigitalLinkCompressionPrototype/). The output of any GS1 barcode can be fed to that toolkit, along with the base URI of your resolver, and the corresponding GS1 Digital Link URI is returned. -->
 ## Accessing multiple links
 Redirection to the resource you most likely want is just the default behaviour. The resolver may have multiple links associated with a given identifier and these can be discovered in two ways:
 ### HTTP-only
-You can do an HTTP HEAD request on any GS1 Digital Link URI and suppress your client’s redirection. The resolver will include the full list of available links in its Link response header. **NB** this feature is likely to evolve to make use of the [Linkset](https://tools.ietf.org/html/draft-wilde-linkset-07) proposal that will provide the list of links with the *same* syntax but in a linked text file. For now though, the following remains true.
+You can do an HTTP HEAD request on any GS1 Digital Link URI and suppress your client’s redirection. The resolver will include the full list of available links in its Link response header. **NB** this feature is likely to evolve. The GS1 Digital Link standard suggests (but does not normatively require) use of the [Linkset](https://datatracker.ietf.org/doc/html/draft-ietf-httpapi-linkset-03) draft standard. This *may* one day mean that provision of all available links in the HTTP Link Header is unnecessary (it's known to cause problems if there are a lot of links). At the time of writing, this is an open question. For now though, the following remains true.
 
 The key elements of the HTTP trace for the Dal Giardino example are as follows:
 
@@ -68,12 +70,10 @@ The same list of available links can be obtained as either a JSON object or an H
 The JSON object returned to clients specifying that media type in the HTTP request is identical to the one included in and processed by the HTML page. Resolvers allow the differentiation of links associated with a particular GS1 key according to:
 1. The link relationship type (known in GS1 Digital Link as simply the ‘link type’)
 2. The language of the target resource
-3. 	The media type of the target resource
-4.	A further value called context.
+3. The media type of the target resource
+4. A further value called context.
 The value space (e.g. permitted / defined values) for the context parameter is not defined in the GS1 Digital Link standard but is defined separately for each resolver in the Resolver Description File that can be found as a JSON object at `/.well-known/gs1resolver` for any GS1 conformant resolver (see the [id.gs1.org resolver example](https://id.gs1.org/.well-known/gs1resolver)). The values can be expressed either as an enumerated list (in an array provided as the value of `supportedContextValuesEnumerated` and/or by naming one or more external lists of values as the value of the `supportedContextValuesExternal` property).
-**NB** The structure of the returned JSON is *not stable*. At the time of writing (2020-12-11), we have competed technical work on version 1.2 of the standard and that document will define the formal structure (there will be a JSON schema etc.). Expect version 1.2 to be formally ratified in January 2021. See the [communty review documents](https://www.gs1.org/standards/development-work-groups/public-reviews#DL_Public-Review-2020).  We will match the idea proposed in the [Linkset](https://tools.ietf.org/html/draft-wilde-linkset-07) proposal. Note the importance of the Accept header when requesting the linkset. Please be sure to be ready to adjust your code for handling that JSON. See the bottom of the page for how you can make sure you're kept up to date.
-
-**Update 2021-01-21** Linkset has been fully implemented on the developers' resolver and partially on the production resolver.
+The structure of the returned JSON follows the [Linkset](https://datatracker.ietf.org/doc/html/draft-ietf-httpapi-linkset-03) draft standard and can be considered stable. Note the importance of the Accept header when requesting the linkset.
 
 ## Requesting a specific link
 Rather than redirecting to the default link, a resolver will redirect requests for a specific link type if one is available. For example:
