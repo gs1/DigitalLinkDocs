@@ -15,6 +15,8 @@
 # Quick Start Documentation for various GS1 Digital Link tools and libraries
 
 GS1 conformant resolvers act primarily as redirection services and, with the exception of one command, do not usually return content directly. They are defined in chapter 7 of version 1.1 of the [GS1 Digital Link standard](https://www.gs1.org/docs/Digital-Link/GS1_Digital_link_Standard_i1.1.pdf).
+
+Please note that all GS1 standards carry a [legal disclaimer](https://ref.gs1.org/gs1/standards-disclaimer/).
 ## Overall aim
 The overall aim of a GS1 conformant resolver is that applications can resolve a GS1 identifier, such as a GTIN, SSCC or GLN, and be redirected to one or more resources relevant to the identified item. There's a [9 minute video](https://youtu.be/H2idDJeH3o4) that provides an introduction to the different layers that comprise GS1 Digital Link.
 ## The basics
