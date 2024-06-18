@@ -1,4 +1,4 @@
-# GS1 Digital Link, conformant resolvers and more *
+# GS1 Digital Link, conformant resolvers and more #
 For several years, this repo served as a quick start guide for GS1 Digital Link. It has now been superseded by other documents and resources and so most of the content that was here has been removed. The links below should provide what you're looking for;
 
 * The [Quick start guide for GS1 Digital Link](https://ref.gs1.org/docs/2024/digital-link-quick-start-guide) is written for technical staff who have been given the task of "implementing GS1 Digital Link."
